@@ -1,0 +1,85 @@
+
+
+ <mat-sidenav-container class="container">
+  <mat-sidenav #sidenav mode="side"  class="container__sidenav" opened>
+
+    <header class="container__sidenav__header">
+
+      <ul class="container__sidenav__header__list" [matMenuTriggerFor]="menu" >
+
+        <li class="container__sidenav__header__list__element">
+          <div class="container__sidenav__header__list__element__box">
+            <h2 class="container__sidenav__header__list__element__box__icon">
+              <span class="container__sidenav__header__list__element__box__icon__bold">S</span>
+            </h2>
+            <span>Systemadmin</span>
+            <mat-icon>expand_more</mat-icon>
+          </div>
+        </li>
+      </ul>
+
+      <button  class="container__sidenav__header__button" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+
+        <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>My Account</span>
+        </button>
+        <button mat-menu-item (click)="about()">
+          <mat-icon>info</mat-icon>
+          <span>About</span>
+        </button>
+        <button mat-menu-item routerLink="/login">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+
+      </mat-menu>
+
+
+    </header>
+
+    <mat-button-toggle-group class="container__sidenav__toggle-group">
+
+      <div *ngFor="let item of toggleButtons" >
+
+        <!-- <mat-button-toggle class="button-toggle" (change)="routePage(item)"><mat-icon>assignment</mat-icon> {{item}}</mat-button-toggle> -->
+        <mat-button-toggle class="button-toggle" (change)="routePage(item)">
+          <div class="button-toggle__box">
+            <mat-icon *ngIf="item=='Form'">assignment</mat-icon>
+            <mat-icon *ngIf="item=='Response'">assignment_turned_in</mat-icon>
+            <mat-icon *ngIf="item=='User'">account_circle</mat-icon>
+            <mat-icon *ngIf="item=='Map'">map</mat-icon>
+            <span>{{item}}</span>
+          </div>
+        </mat-button-toggle>
+
+      </div>
+
+    </mat-button-toggle-group>
+
+  </mat-sidenav>
+  <!-- <mat-sidenav position="end">End</mat-sidenav> -->
+  <mat-sidenav-content class="container__sidenav-content">
+    <header class="container__sidenav-content__header">
+      <button type="button"  class="container__sidenav__header__button" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <div class="nav-logo">
+        <img src="assets/ACP_Logo.png" alt="">
+      </div>
+
+    </header>
+
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
